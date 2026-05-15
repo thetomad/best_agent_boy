@@ -1,1 +1,2 @@
-from .documents import read_internal_documents
+from tools_managment import tools_registry
+
