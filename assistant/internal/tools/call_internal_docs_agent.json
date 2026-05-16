@@ -1,0 +1,22 @@
+{
+  "name": "call_internal_docs_agent",
+  "type": "agent",
+  "target_agent": "internal_docs_agent",
+  "description": "Call an internal agent that can read internal documents for company related information.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "The information-related task to send to the agent."
+      },
+      "context": {
+        "type": "string",
+        "description": "Extra context for the information required."
+      }
+    },
+    "required": [
+      "task"
+    ]
+  }
+}

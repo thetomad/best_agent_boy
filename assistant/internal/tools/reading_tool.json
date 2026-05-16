@@ -1,0 +1,10 @@
+{
+  "name": "read_internal_documents",
+  "type": "function",
+  "description": "Get form internal documents all information about the company.",
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "orchestrator",
+  "model": "",
+  "description": "Orchestrator for tools",
+  "system": "You are an agent responsible for orchestrating of all agents. If the user asks about information regarding the company, call the internal docs agent. After it responsds five the user a clear final answer.",
+  "tools": [
+    "call_internal_docs_agent"
+  ]
+}

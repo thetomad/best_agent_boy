@@ -1,0 +1,8 @@
+{
+  "name": "internal_docs_agent",
+  "model": "",
+  "system": "You are an agent responsible for reading internal documentation.",
+  "tools": [
+    "read_internal_documents"
+  ]
+}
