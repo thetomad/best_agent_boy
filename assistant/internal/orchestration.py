@@ -7,15 +7,24 @@ import requests
 # Importing implementations
 from implementations import implementations
 
+OLLAMA_URL = "http://localhost:11434/api/chat"
+
 
 def load_json_folder(folder: str) -> dict[str, dict[str, Any]]:
     items = {}
 
-    for path in Path(folder).glob("*.json"):
+    base_dir = Path(__file__).parent
+
+    folder_path = base_dir / folder
+
+    for path in folder_path.glob("*.json"):
         with path.open("r", encoding="utf-8") as file:
             spec = json.load(file)
 
         items[spec["name"]] = spec
+
+    if not items:
+        raise FileNotFoundError(f"Directory not found: {folder} in {str(base_dir)}")
 
     return items
 
@@ -26,7 +35,7 @@ class AgentRuntime:
         agents_dir: str = "agents",
         tools_dir: str = "tools",
         implementations: dict[str, Callable[..., Any]] = implementations,
-        url: str = "",
+        url: str = OLLAMA_URL,
     ) -> None:
         self.agents = load_json_folder(agents_dir)
         self.tools = load_json_folder(tools_dir)
@@ -128,3 +137,9 @@ class AgentRuntime:
 runtime = AgentRuntime(
     agents_dir="agents", tools_dir="tools", implementations=implementations
 )
+
+answer = runtime.call_agent(
+    agent_name="orchestrator", user_message="Who is the CEO of the company?"
+)
+
+print(answer)

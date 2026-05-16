@@ -4,14 +4,17 @@ Document related tools. Those will be mainly used for general purpose documentat
 Later we might change this to encompese client-specific tools.
 
 """
-import os 
+
+import os
 
 
-def read_internal_documents(directory: str = "../../data/public", allowed_extensions=(".txt", ".md")):
+def read_internal_documents(
+    directory: str = "./assistant/data/public", allowed_extensions=(".txt", ".md")
+):
     """
-    Function for reading internal documents. 
+    Function for reading internal documents.
 
-    A function that will read from the internal documents and return all the information. 
+    A function that will read from the internal documents and return all the information.
     The directory by default will be in the data section of the project.
     It is a testing tool function to be removed in later versions.
 

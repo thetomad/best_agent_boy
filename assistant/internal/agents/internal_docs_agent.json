@@ -1,6 +1,6 @@
 {
   "name": "internal_docs_agent",
-  "model": "",
+  "model": "qwen3.5:0.8b",
   "system": "You are an agent responsible for reading internal documentation.",
   "tools": [
     "read_internal_documents"
