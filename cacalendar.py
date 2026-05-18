@@ -2,9 +2,8 @@ import calendar
 import datetime as dt
 
 class time_slot:
-    start_slot = dt.datetime(2026, 11, 6, 13, 29, 43, 79043)
-    end_slot = dt.datetime(2026, 11, 6, 16, 29, 43, 79043)
-    #                      yyyy, mm, dd, h, s, ms, timezone
+    #start_slot should be in dt.datetime(2026, 11, 6, 13, 29, 43, 79043) format
+    #                                    yyyy, mm, dd, h, ss, ms, timezone
     def __init__(self, st_slt, end_slt):
         self.start_slot = st_slt
         self.end_slot = end_slt
@@ -13,7 +12,9 @@ class time_slot:
         return f"appointment {self.start_slot},ends at {self.end_slot}"
     
     def overlaps(self, other):
-        return self.end_slot > other.start_slot and other.start_slot < self.end_slot
+        condition_1 = self.start_slot < other.end_slot and other.start_slot < self.end_slot
+        condition_2 = other.start_slot < self.end_slot and other.start_slot > self.end_slot
+        return condition_1 or condition_2
 
 #Vom folosi datele in format datetime -> pentru Google trebuie javascript :.(
 
@@ -68,6 +69,7 @@ class Planificator:
 
         current = self.WORK_START
 
+        print(f"+++++++Free Schedule+++++++")
         for evt in apps:
             if current < evt.start_slot:
                 empty_slots.append(time_slot(current, evt.end_slot))
@@ -87,19 +89,19 @@ plnif = Planificator()
 time1 = dt.datetime(2026, 11, 6, 10, 29, 43)
 time2 = dt.datetime(2026, 11, 6, 11, 24, 43)
 
-time3 = dt.datetime(2026, 11, 6, 14, 45, 43)
+time3 = dt.datetime(2026, 11, 6, 13, 45, 43)
 time4 = dt.datetime(2026, 11, 6, 16, 24, 43)
 
-# time5 = dt.datetime(2026, 11, 6, 12, 29, 43)
-# time6 = dt.datetime(2026, 11, 6, 13, 24, 43)
+time5 = dt.datetime(2026, 11, 6, 12, 29, 43)
+time6 = dt.datetime(2026, 11, 6, 13, 24, 43)
 
-plnif.add_appointment( time3, time4 )
 
 
 plnif.add_appointment( time1, time2 )
 
+plnif.add_appointment( time3, time4 )
 
-# plnif.add_appointment( time5, time6 )
+plnif.add_appointment( time5, time6 )
 
 
 # print(plnif)
